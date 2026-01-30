@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinks' Doula Agency | Compassionate Birth Support</title>
+    <style>
+        /* --- CSS VARIABLES & THEME --- */
+        :root {
+            /* Updated Palette for "Tinks" - Whimsical yet Professional */
+            --primary-lavender: #9D8CA1; 
+            --deep-purple: #5D4E60;
+            --sage-green: #8FA396;
+            --bg-cream: #FFFCF5;
+            --text-dark: #333333;
+            --white: #FFFFFF;
+            --gold-accent: #D4AF37;
+            --soft-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--deep-purple);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background-color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--deep-purple);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span { color: var(--primary-lavender); }
+
+        .nav-links a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-lavender); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(93, 78, 96, 0.1), rgba(93, 78, 96, 0.2)), url('https://images.unsplash.com/photo-1555252333-9f8e92e65df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4rem;
+            border-radius: 2px;
+            max-width: 800px;
+            box-shadow: var(--soft-shadow);
+            border-top: 5px solid var(--primary-lavender);
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; line-height: 1.2; }
+        .hero p { font-size: 1.1rem; color: #666; margin-bottom: 2rem; }
+
+        .btn-main {
+            display: inline-block;
+            background-color: var(--deep-purple);
+            color: var(--white);
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-main:hover {
+            background-color: var(--primary-lavender);
+            transform: translateY(-3px);
+        }
+
+        /* --- SECTIONS --- */
+        section { padding: 5rem 10%; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+        }
+
+        /* --- SERVICES --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: left;
+            box-shadow: var(--soft-shadow);
+            border-bottom: 3px solid transparent;
+            transition: 0.3s;
+        }
+
+        .service-card:hover { border-bottom: 3px solid var(--gold-accent); }
+        .service-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary-lavender); }
+        .price-tag { display: block; margin-top: 15px; font-weight: bold; color: var(--deep-purple); }
+
+        /* --- ABOUT & AGENCY INFO --- */
+        .about-layout {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-text { flex: 1; min-width: 300px; }
+        .about-image { 
+            flex: 1; 
+            min-width: 300px;
+            height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1623682204428-233907b243a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            border-radius: 20px;
+        }
+
+        /* --- CONTACT FORM --- */
+        .form-group { margin-bottom: 1rem; }
+        .form-input {
+            width: 100%; padding: 12px;
+            border: 1px solid #ddd; border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .contact-section { background-color: var(--white); }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--deep-purple);
+            color: var(--white);
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        /* --- AI AGENT CHATBOT STYLING --- */
+        .chat-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .chat-toggle-btn {
+            width: 65px; height: 65px;
+            border-radius: 50%;
+            background-color: var(--primary-lavender);
+            color: white;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(93, 78, 96, 0.4);
+            transition: transform 0.3s;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .chat-toggle-btn:hover { transform: scale(1.1); background-color: var(--deep-purple); }
+
+        .chat-interface {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 380px;
+            height: 550px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #eee;
+            animation: floatUp 0.3s ease-out;
+        }
+
+        @keyframes floatUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-header {
+            background: var(--deep-purple);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .agent-status {
+            width: 10px; height: 10px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #F9F9F9;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .msg {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .msg-bot {
+            background-color: #EBEBEB;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .msg-user {
+            background-color: var(--primary-lavender);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .typing-indicator {
+            font-size: 0.8rem; color: #888; margin-left: 5px;
+            display: none;
+        }
+
+        .chat-input-zone {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            background: white;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input-field {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .chat-send {
+            background: none; border: none;
+            color: var(--deep-purple);
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .chat-interface { width: 90vw; height: 60vh; right: -10px; }
+        }
+    </style>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav>
+        <a href="#" class="logo">Tinks'<span>Doula Agency</span></a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#packages">Packages</a>
+            <a href="#agency">About Tink</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>Your Journey, Your Way.</h1>
+            <p>Welcome to Tinks' Doula Agency. We provide holistic, evidence-based support to help you navigate pregnancy and birth with confidence.</p>
+            <a href="#contact" class="btn-main">Schedule a Consultation</a>
+        </div>
+    </header>
+
+    <!-- Packages -->
+    <section id="packages">
+        <h2 class="section-title">Agency Packages</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>The Essential Birth</h3>
+                <p>Two prenatal visits, continuous labor support, and one postpartum check-in. Perfect for parents who want grounded support.</p>
+                <span class="price-tag">$1,400</span>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌙</div>
+                <h3>The Moon & Stars</h3>
+                <p>Our premium package. Includes 4 prenatal visits, labor support, photography, and 12 hours of postpartum night support.</p>
+                <span class="price-tag">$2,800</span>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🍵</div>
+                <h3>Postpartum Nurture</h3>
+                <p>We come to your home to help with breastfeeding, meal prep, and newborn care so you can rest and recover.</p>
+                <span class="price-tag">$45/hour</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Agency -->
+    <section id="agency" style="background-color: #fff;">
+        <h2 class="section-title">Why Tinks' Agency?</h2>
+        <div class="about-layout">
+            <div class="about-image"></div>
+            <div class="about-text">
+                <h3>Evidence-Based & Heart-Led</h3>
+                <p>At Tinks' Doula Agency, we believe that information is power, but support is everything. Founded by "Tink" (Katherine), our agency integrates modern data with traditional comfort measures.</p>
+                <br>
+                <p>We specialize in VBAC support, anxiety reduction during labor, and establishing successful breastfeeding relationships. Our team is on call 24/7 starting at your 38th week.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Let's Connect</h2>
+        <div style="max-width: 600px; margin: 0 auto;">
+            <p style="text-align: center; margin-bottom: 20px;">Have a question? Ask our <strong>AI Agent, Tink</strong> (bottom right), or fill out this form.</p>
+            <form>
+                <div class="form-group"><input type="text" class="form-input" placeholder="Your Name"></div>
+                <div class="form-group"><input type="email" class="form-input" placeholder="Email Address"></div>
+                <div class="form-group"><input type="date" class="form-input" placeholder="Due Date"></div>
+                <div class="form-group"><textarea rows="4" class="form-input" placeholder="How can we help?"></textarea></div>
+                <button type="button" class="btn-main" style="width: 100%; border: none;">Submit Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Tinks' Doula Agency. Serving families with love.</p>
+    </footer>
+
+    <!-- ========================================== -->
+    <!--       AI CHATBOT INTEGRATION CODE          -->
+    <!-- ========================================== -->
+    <div class="chat-widget">
+        
+        <!-- Chat Interface -->
+        <div class="chat-interface" id="chatInterface">
+            <div class="chat-header">
+                <div style="font-size: 24px;">🤖</div>
+                <div>
+                    <div style="font-weight: bold;">Agent Tink</div>
+                    <div style="font-size: 12px; opacity: 0.8;"><span class="agent-status"></span> Online • Tinks' Agency AI</div>
+                </div>
+                <button onclick="toggleChat()" style="margin-left: auto; background:none; border:none; color:white; font-size:20px; cursor:pointer;">&times;</button>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="msg msg-bot">
+                    Hello! I am Tink, the agency's AI assistant. 💜 I can answer questions about our <strong>packages</strong>, <strong>labor comfort measures</strong>, or <strong>availability</strong>. How can I help?
+                </div>
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator">Tink is thinking...</div>
+
+            <div class="chat-input-zone">
+                <input type="text" id="userChatInput" class="chat-input-field" placeholder="Ask about pricing, pain relief..." onkeypress="checkEnter(event)">
+                <button class="chat-send" onclick="handleUserMessage()">➤</button>
+            </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <button class="chat-toggle-btn" onclick="toggleChat()">💬</button>
+    </div>
+
+    <script>
+        // --- DOULA KNOWLEDGE BASE (SIMULATED RAG) ---
+        // This object acts as the "Brain" for the agent. 
+        // In a full stack app, this would be replaced by a database vector search or OpenAI API call.
+        
+        const knowledgeBase = {
+            "pricing": "Our 'Essential Birth' package is $1,400. The premium 'Moon & Stars' package is $2,800. Postpartum care is $45/hr.",
+            "cost": "Our 'Essential Birth' package is $1,400. The premium 'Moon & Stars' package is $2,800. Postpartum care is $45/hr.",
+            "packages": "We offer: 1. Essential Birth (Standard) and 2. Moon & Stars (Premium). Both include on-call support 24/7 from 38 weeks.",
+            
+            "pain": "Tinks' Agency focuses on non-medical pain relief including: Hydrotherapy (water), Counter-pressure (hip squeeze), Rebozo sifting, and Breathwork.",
+            "epidural": "We support all birth plans! If you choose an epidural, we help with positioning (using a peanut ball) to keep labor progressing.",
+            
+            "mucus plug": "A mucus plug loss is a sign your cervix is changing, but labor might still be days away! No need to call us yet unless you have regular contractions or bleeding.",
+            "water break": "If your water breaks, note the COAT: Color, Odor, Amount, and Time. Call your provider, then call us!",
+            
+            "availability": "Tink is currently accepting clients for due dates 4 months from now. We fill up fast!",
+            "location": "We are based in the city but offer virtual support worldwide and travel up to 1 hour for home births.",
+            
+            "dad": "Partners are vital! We don't replace them; we guide them. We show partners exactly how to massage and support you so they feel confident, not helpless.",
+            "partner": "Partners are vital! We don't replace them; we guide them. We show partners exactly how to massage and support you so they feel confident, not helpless."
+        };
+
+        // --- CHAT LOGIC ---
+
+        const chatInterface = document.getElementById('chatInterface');
+        const messagesContainer = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userChatInput');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        function toggleChat() {
+            const isHidden = chatInterface.style.display === 'none' || chatInterface.style.display === '';
+            chatInterface.style.display = isHidden ? 'flex' : 'none';
+            if(isHidden) userInput.focus();
+        }
+
+        function checkEnter(event) {
+            if (event.key === "Enter") handleUserMessage();
+        }
+
+        function handleUserMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            // 1. Add User Message
+            appendMessage(text, 'user');
+            userInput.value = '';
+
+            // 2. Show Typing Indicator
+            typingIndicator.style.display = 'block';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // 3. Process Response (Simulate AI Delay)
+            setTimeout(() => {
+                const response = generateResponse(text);
+                typingIndicator.style.display = 'none';
+                appendMessage(response, 'bot');
+            }, 800);
+        }
+
+        function appendMessage(text, sender) {
+            const div = document.createElement('div');
+            div.classList.add('msg', sender === 'user' ? 'msg-user' : 'msg-bot');
+            div.innerHTML = text; // innerHTML allows for bolding/formatting
+            messagesContainer.appendChild(div);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // --- AI BRAIN FUNCTION ---
+        function generateResponse(input) {
+            const lowerInput = input.toLowerCase();
+
+            // 1. Search Knowledge Base (Keyword Matching)
+            for (const [key, value] of Object.entries(knowledgeBase)) {
+                if (lowerInput.includes(key)) {
+                    return value;
+                }
+            }
+
+            // 2. Contextual Fallbacks
+            if (lowerInput.includes('hello') || lowerInput.includes('hi')) {
+                return "Hi there! 👋 I'm here to help with your birth journey questions. Ask me about pricing, pain relief, or scheduling.";
+            }
+            
+            if (lowerInput.includes('scared') || lowerInput.includes('nervous') || lowerInput.includes('worry')) {
+                return "It is completely normal to feel that way. At Tinks' Agency, we help you turn fear into confidence through education and presence. You've got this. 💜";
+            }
+
+            // 3. Default/Unknown
+            return "That's a great specific question. While I'm an AI trained on Tinks' general policies, I think Tink herself should answer this. Please use the contact form on the left to reach her directly!";
+            
+            /* 
+               // --- API INTEGRATION NOTE --- //
+               If you had an OpenAI API Key, you would replace the logic above with:
+               
+               fetch('https://api.openai.com/v1/chat/completions', {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/json',
+                       'Authorization': 'Bearer YOUR_KEY_HERE'
+                   },
+                   body: JSON.stringify({
+                       model: "gpt-3.5-turbo",
+                       messages: [
+                         {role: "system", content: "You are Tink, a helpful Doula AI."},
+                         {role: "user", content: input}
+                       ]
+                   })
+               })
+               .then(response => response.json())
+               .then(data => appendMessage(data.choices[0].message.content, 'bot'));
+            */
+        }
+    </script>
+</body>
+</html>
